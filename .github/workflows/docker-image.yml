@@ -12,6 +12,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,6 +40,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          platforms: linux/amd64,linux/arm64/v8
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
           tags: belstardev/odmtpl-ci-base:latest,belstardev/odmtpl-ci-base:0.0.2
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
