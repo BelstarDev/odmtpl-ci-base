@@ -37,6 +37,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: belstardev/odmtpl-ci-base:latest
+          tags: belstardev/odmtpl-ci-base:latest,belstardev/odmtpl-ci-base:0.0.2
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
